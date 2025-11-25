@@ -383,6 +383,12 @@ The Chrome DevTools MCP server supports the following configuration option:
   - **Type:** boolean
   - **Default:** `true`
 
+- **`--screenshot-format`**
+  Default image format for screenshots. Options: png, jpeg, webp. Default is png.
+  - **Type:** string
+  - **Choices:** `png`, `jpeg`, `webp`
+  - **Default:** `png`
+
 <!-- END AUTO GENERATED OPTIONS -->
 
 Pass them via the `args` property in the JSON configuration. For example:
@@ -424,7 +430,7 @@ You can connect directly to a Chrome WebSocket endpoint and include custom heade
 
 To get the WebSocket endpoint from a running Chrome instance, visit `http://127.0.0.1:9222/json/version` and look for the `webSocketDebuggerUrl` field.
 
-You can also run `npx chrome-devtools-mcp@latest --help` to see all available configuration options.
+You can run `npx chrome-devtools-mcp@latest --help` to see all available configuration options.
 
 ## Concepts
 
