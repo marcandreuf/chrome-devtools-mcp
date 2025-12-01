@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type {YargsOptions} from './third_party/index.js';
-import {yargs, hideBin} from './third_party/index.js';
+import type { YargsOptions } from './third_party/index.js';
+import { yargs, hideBin } from './third_party/index.js';
 
 export const cliOptions = {
   browserUrl: {
@@ -88,8 +88,13 @@ export const cliOptions = {
   isolated: {
     type: 'boolean',
     description:
-      'If specified, creates a temporary user-data-dir that is automatically cleaned up after the browser is closed.',
-    default: false,
+      'If specified, creates a temporary user-data-dir that is automatically cleaned up after the browser is closed. Defaults to false.',
+  },
+  userDataDir: {
+    type: 'string',
+    description:
+      'Path to the user data directory for Chrome. Default is $HOME/.cache/chrome-devtools-mcp/chrome-profile$CHANNEL_SUFFIX_IF_NON_STABLE',
+    conflicts: ['browserUrl', 'wsEndpoint', 'isolated'],
   },
   channel: {
     type: 'string',
@@ -222,6 +227,10 @@ export function parseArguments(version: string, argv = process.argv) {
       [
         '$0 --screenshot-format jpeg',
         'Set default screenshot format to JPEG (overrides PNG default)',
+      ],
+      [
+        '$0 --user-data-dir=/tmp/user-data-dir',
+        'Use a custom user data directory',
       ],
     ]);
 
